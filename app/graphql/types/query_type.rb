@@ -11,8 +11,14 @@ module Types
     end
 
     field :users, [Users::Types::UserType], null: false
+    field :events, [Events::Types::EventType], null: false
+
     def users
       User.all
+    end
+
+    def events
+      FetchEvents.call
     end
   end
 end
