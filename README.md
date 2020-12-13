@@ -1,24 +1,11 @@
-# README
+# Soundtrip api
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Intial setup:
+  - `bundle install`
+  - `bin/rails db:setup`
 
-Things you may want to cover:
+## How to start server locally:
+  - `bin/rails s` 
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## console
+-  `bin/rails c`
