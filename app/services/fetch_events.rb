@@ -4,9 +4,10 @@ class FetchEvents
       params = {
         size: 10,
         source: 'ticketmaster',
-        classificationId:'KZFzniwnSyZfZ7v7nJ',
         startDateTime: start_date.to_datetime,
-        latlong: "#{lat},#{lng}"
+        latlong: "#{lat},#{lng}",
+        sort:'date,asc',
+        classificationId:'KZFzniwnSyZfZ7v7nJ',
       }
       client = Ticketmaster.client(apikey: ENV['TICKETMASTER_API_KEY'])
       response = client.search_events(params: params)
