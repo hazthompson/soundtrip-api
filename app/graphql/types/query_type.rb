@@ -13,14 +13,15 @@ module Types
     field :users, [Users::Types::UserType], null: false
     field :events, [Events::Types::EventType], null: false do
       description 'get events by date and location'
-      argument :start_date, GraphQL::Types::ISO8601Date, required: true
+      argument :start_date, GraphQL::Types::ISO8601DateTime, required: false
     end
 
     def users
       User.all
     end
 
-    def events(start_date:)
+    def events(start_date: Time.now)
+      puts "\n DATE IS #{start_date}\n"
       FetchEvents.call(start_date: start_date)
     end
   end
