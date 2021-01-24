@@ -1,10 +1,11 @@
 class FetchEvents
   class << self
-    def call
+    def call(start_date:)
       params = {
         size: 10,
         source: 'ticketmaster',
         classificationId:'KZFzniwnSyZfZ7v7nJ',
+        startDateTime: start_date.to_datetime,
       }
       client = Ticketmaster.client(apikey: ENV['TICKETMASTER_API_KEY'])
       response = client.search_events(params: params)

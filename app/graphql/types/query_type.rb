@@ -11,14 +11,17 @@ module Types
     end
 
     field :users, [Users::Types::UserType], null: false
-    field :events, [Events::Types::EventType], null: false
+    field :events, [Events::Types::EventType], null: false do
+      description 'get events by date and location'
+      argument :start_date, GraphQL::Types::ISO8601Date, required: true
+    end
 
     def users
       User.all
     end
 
-    def events
-      FetchEvents.call
+    def events(start_date:)
+      FetchEvents.call(start_date: start_date)
     end
   end
 end
