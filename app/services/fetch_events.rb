@@ -2,7 +2,7 @@ class FetchEvents
   class << self
     def call(start_date:, lat:, lng:)
       params = {
-        size: 10,
+        size: 35,
         source: 'ticketmaster',
         startDateTime: start_date.to_datetime,
         latlong: "#{lat},#{lng}",
@@ -11,7 +11,10 @@ class FetchEvents
       }
       client = Ticketmaster.client(apikey: ENV['TICKETMASTER_API_KEY'])
       response = client.search_events(params: params)
-      response.results.map do |result|
+      filtered_results = response.results.select do |result|
+        result.attractions.present?
+      end
+      filtered_results.map do |result|
         artist = result.attractions.first
         date = result.dates['start']
         venue = result.venues.first
