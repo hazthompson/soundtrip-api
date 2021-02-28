@@ -20,6 +20,7 @@ class FetchEvents
         venue = result.venues.first
         image = result.images.first
         Event.new(
+          ticketmaster_id: result.data['id'],
           artist_name: artist&.name,
           date: date ? date['localDate'] : null,
           venue: venue&.name,
